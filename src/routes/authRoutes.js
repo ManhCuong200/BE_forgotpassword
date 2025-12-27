@@ -10,7 +10,6 @@ import {
   getUsers,
   forgotPassword,
   resetPassword,
-  googleLoginController,  
 } from "../controllers/authController.js";
 import { protect, authorize } from "../middleware/authMiddleware.js";
 
@@ -156,5 +155,4 @@ router.get("/getUsers", protect, authorize('admin'), getUsers);
  */
 router.post('/forgot-password', forgotPassword);
 router.put('/reset-password/:token', resetPassword);
-router.post('/google-login', googleLoginController);
 export default router;
