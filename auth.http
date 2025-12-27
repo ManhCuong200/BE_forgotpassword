@@ -1,0 +1,25 @@
+### REGISTER
+POST http://localhost:3001/api/auth/register
+Content-Type: application/json
+
+{
+"name": "cuongdepchai",
+"email": "tmanhcuong2k4@gmail.com",
+"password": "123456",
+"role": "user"
+}
+### LOGIN
+POST http://localhost:3001/api/auth/login
+Content-Type: application/json
+
+{
+"email": "tmanhcuong2k4@gmail.com",
+"password": "123456"
+}
+### FORGOT PASSWORD
+POST http://localhost:3001/api/auth/forgot-password
+Content-Type: application/json
+
+{
+  "email": "tmanhcuong2k4@gmail.com" 
+}
