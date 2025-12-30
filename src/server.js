@@ -17,7 +17,6 @@ app.use(
     credentials: true,
   })
 );
-app.options("*", cors());
 
 connectDB();
 
