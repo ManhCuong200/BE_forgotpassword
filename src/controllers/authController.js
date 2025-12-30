@@ -1,6 +1,6 @@
 import * as authService from "../services/authService.js";
 import { successResponse, errorResponse } from "../utils/response.js";
-import User from "../models/userModel.js";
+
 
 const COOKIE_OPTIONS = {
   httpOnly: true,

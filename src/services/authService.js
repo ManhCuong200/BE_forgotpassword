@@ -112,7 +112,7 @@ export const deleteUser = async (userId) => {
 //   console.log("data",data._id.toString())
 //   // check this user is Authorization
 //   // if(user._id.toString() !== id) throw new Error("NOT_AUTHORIZATION");
-  
+
 //   if (data._id && data._id.toString() !== userId) {
 //   throw new Error("NOT_AUTHORIZATION");
 // }
@@ -136,7 +136,7 @@ export const deleteUser = async (userId) => {
 export const updateUser = async (targetId, data, actingId, actingRole) => {
   const user = await User.findById(targetId);
   if (!user) throw new Error("USER_NOT_FOUND");
-console.log(targetId)
+  console.log(targetId)
   // User thường chỉ được sửa chính mình
   if (actingRole !== "admin" && actingId !== targetId) {
     throw new Error("NOT_AUTHORIZATION");
@@ -185,11 +185,12 @@ export const forgotPassword = async (email) => {
     });
     return { message: 'Email sent' };
   } catch (err) {
-    // Rollback nếu lỗi
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-    await user.save({ validateBeforeSave: false });
-    throw new Error('EMAIL_SEND_FAILED');
+    // Nếu gửi email lỗi, vẫn giữ token trong DB để user dùng link log ra console
+    console.error("❌ Lỗi gửi email:", err.message);
+    console.log("👉 Vẫn trả về thành công để FE chuyển trang (Test mode)");
+
+    // KHÔNG throw error 500, trả về thành công giả
+    return { message: 'Email send failed but simulated success for dev' };
   }
 };
 
